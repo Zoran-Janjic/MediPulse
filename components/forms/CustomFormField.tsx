@@ -31,18 +31,19 @@ const CustomFormField = (props: CustomFormProps) => {
       case FormFieldType.INPUT:
         return (
           <div className="flex rounded-md border border-dark-500 bg-dark-400">
-            {iconSrc && (
+            {props.iconSrc && (
               <Image
-                src={iconSrc}
-                alt={iconAlt || "Icon"}
+                src={props.iconSrc}
                 height={24}
                 width={24}
+                alt={props.iconAlt || "icon"}
+                className="ml-2"
               />
             )}
             <FormControl>
               <Input
+                placeholder={props.placeholder}
                 {...field}
-                placeholder={placeholder || ""}
                 className="shad-input border-0"
               />
             </FormControl>
@@ -50,15 +51,17 @@ const CustomFormField = (props: CustomFormProps) => {
         );
       case FormFieldType.PHONE_INPUT:
         return (
-          <div>
+          <FormControl>
             <PhoneInput
-              value={field.value as E164Number | undefined}
+              defaultCountry="US"
+              placeholder={props.placeholder}
+              international
               withCountryCallingCode
+              value={field.value as E164Number | undefined}
               onChange={field.onChange}
               className="input-phone"
-              placeholder={placeholder || ""}
             />
-          </div>
+          </FormControl>
         );
     }
   };
