@@ -1,5 +1,7 @@
 import { Models } from "node-appwrite";
 
+declare type Gender = "Male" | "Female" | "Other";
+
 export interface Patient extends Models.Document {
   userId: string;
   name: string;

@@ -35,24 +35,24 @@ export interface CustomFormSubmitButtonProps {
 
 /* eslint-disable no-unused-vars */
 
-declare type SearchParamProps = {
+type SearchParamProps = {
   params: { [key: string]: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-declare type Gender = "Male" | "Female" | "Other";
-declare type Status = "pending" | "scheduled" | "cancelled";
+type Gender = "Male" | "Female" | "Other";
+type Status = "pending" | "scheduled" | "cancelled";
 
-declare interface CreateUserParams {
+export interface CreateUserParams {
   name: string;
   email: string;
   phone: string;
 }
-declare interface User extends CreateUserParams {
+interface User extends CreateUserParams {
   $id: string;
 }
 
-declare interface RegisterUserParams extends CreateUserParams {
+interface RegisterUserParams extends CreateUserParams {
   userId: string;
   birthDate: Date;
   gender: Gender;
@@ -73,7 +73,7 @@ declare interface RegisterUserParams extends CreateUserParams {
   privacyConsent: boolean;
 }
 
-declare type CreateAppointmentParams = {
+type CreateAppointmentParams = {
   userId: string;
   patient: string;
   primaryPhysician: string;
@@ -83,7 +83,7 @@ declare type CreateAppointmentParams = {
   note: string | undefined;
 };
 
-// declare type UpdateAppointmentParams = {
+//  type UpdateAppointmentParams = {
 //   appointmentId: string;
 //   userId: string;
 //   appointment: Appointment;

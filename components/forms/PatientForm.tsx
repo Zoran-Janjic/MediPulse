@@ -6,13 +6,16 @@ import { useForm } from "react-hook-form";
 import CustomFormField from "./CustomFormField";
 import { FormFieldType } from "../../types/types";
 import CustomFormSubmitButton from "./CustomFormSubmitButton";
-import { useState } from "react";
+import { use, useState } from "react";
 import { userFormValidation } from "./FormValidation";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { createUser } from "@/lib/actions/patient.actions";
 
 const PatientForm = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof userFormValidation>>({
     resolver: zodResolver(userFormValidation),
@@ -23,30 +26,29 @@ const PatientForm = () => {
     },
   });
 
-  // 2. Define a submit handler.
   const onSubmit = async (values: z.infer<typeof userFormValidation>) => {
     setIsLoading(true);
-    console.log("first");
-    // try {
-    //   const user = {
-    //     name: values.name,
-    //     email: values.email,
-    //     phone: values.phone,
-    //   };
 
-    //   const newUser = await createUser(user);
+    try {
+      const user = {
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+      };
 
-    //   if (newUser) {
-    //     router.push(`/patients/${newUser.$id}/register`);
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+      console.log(user);
+
+      const newUser = await createUser(user);
+
+      if (newUser) {
+        router.push(`/patients/${newUser.$id}/register`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
 
     setIsLoading(false);
   };
-
-  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <Form {...form}>
@@ -80,7 +82,7 @@ const PatientForm = () => {
           placeholder={"example@example.com"}
           iconSrc={"/assets/icons/email.svg"}
           iconAlt={"email"}
-          name="username"
+          name="email"
         />
 
         {/* Phone */}
@@ -90,7 +92,7 @@ const PatientForm = () => {
           label={"Phone number"}
           description={"phone number"}
           placeholder={"(123) 456-7890"}
-          name="phoneNumber"
+          name="phone"
         />
 
         <CustomFormSubmitButton isLoading={isLoading}>
