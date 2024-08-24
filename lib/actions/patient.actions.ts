@@ -9,7 +9,6 @@ export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
 // CREATE APPWRITE USER
 export const createUser = async (user: CreateUserParams) => {
   try {
-    console.log("im here");
     // Create new user -> https://appwrite.io/docs/references/1.5.x/server-nodejs/users#create
     const newuser = await appwrite_users.create(
       ID.unique(),
@@ -19,16 +18,13 @@ export const createUser = async (user: CreateUserParams) => {
       user.name
     );
 
+    console.log("No error ", newuser);
     return parseStringify(newuser);
   } catch (error: any) {
-    // Check existing user
-    if (error && error?.code === 409) {
-      const existingUser = await appwrite_users.list([
-        Query.equal("email", [user.email]),
-      ]);
-
-      return existingUser.users[0];
+    if (error?.code === 409) {
+      throw new Error("User already exists with this email: " + user.email);
     }
     console.error("An error occurred while creating a new user:", error);
+    throw new Error("Failed to create user: " + error.message);
   }
 };

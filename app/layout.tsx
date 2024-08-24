@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "react-hot-toast";
 
 const fontSans = Roboto({
   subsets: ["latin"],
@@ -29,6 +30,8 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="dark">
+          {/* // make sure to keep toaster above children */}
+          <Toaster position="bottom-center" />
           {children}
         </ThemeProvider>
       </body>

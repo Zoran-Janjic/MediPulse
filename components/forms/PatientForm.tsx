@@ -11,6 +11,7 @@ import { userFormValidation } from "./FormValidation";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
+import { toast } from "react-hot-toast";
 
 const PatientForm = () => {
   const router = useRouter();
@@ -28,26 +29,27 @@ const PatientForm = () => {
 
   const onSubmit = async (values: z.infer<typeof userFormValidation>) => {
     setIsLoading(true);
-
     try {
-      const user = {
-        name: values.name,
-        email: values.email,
-        phone: values.phone,
-      };
+      const createNewUserResponse = await createUser(values);
 
-      console.log(user);
-
-      const newUser = await createUser(user);
-
-      if (newUser) {
-        router.push(`/patients/${newUser.$id}/register`);
+      if (createNewUserResponse?.name === "AppwriteException") {
+        form.reset();
+        throw new Error(
+          createNewUserResponse.message || "Failed to create user"
+        );
       }
-    } catch (error) {
-      console.log(error);
-    }
 
-    setIsLoading(false);
+      // Success
+      form.reset();
+      toast.success("User created successfully!");
+      router.push(`/patients/${createNewUserResponse.$id}/register`);
+    } catch (error: any) {
+      form.reset();
+      toast.error(`Error: ${error.message || "Failed to create user"}`);
+      console.error("Error in onSubmit:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
