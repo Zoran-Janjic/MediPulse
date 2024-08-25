@@ -3,17 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import CustomFormField from "./CustomFormField";
-import { FormFieldType } from "../../types/types";
-import CustomFormSubmitButton from "./CustomFormSubmitButton";
+import CustomFormField from "../CustomFormField";
+import { FormFieldType } from "../../../types/types";
+import CustomFormSubmitButton from "../CustomFormSubmitButton";
 import { use, useState } from "react";
-import { userFormValidation } from "./FormValidation";
+import { userFormValidation } from "../FormValidation";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
 import { toast } from "react-hot-toast";
 
-const PatientForm = () => {
+const RegisterForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -105,4 +105,4 @@ const PatientForm = () => {
   );
 };
 
-export default PatientForm;
+export default RegisterForm;

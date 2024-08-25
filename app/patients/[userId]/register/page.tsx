@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import RegisterForm from "@/components/forms/registerForm/RegisterForm";
 
 const Register = () => {
   return (
@@ -16,7 +17,7 @@ const Register = () => {
             className="mb-12 h-10 w-fit"
           />
 
-          {/* <PatientForm /> */}
+          <RegisterForm />
 
           <div className="text-14-regular mt-20 flex justify-between w-full">
             <p className="justify-items-end text-dark-600 xl:text-left">
@@ -33,7 +34,7 @@ const Register = () => {
         height={"1000"}
         width={"1000"}
         alt="doctor image"
-        className="rounded-xl side-img max-w-[390px]"
+        className="rounded-xl side-img max-w-[50%]"
       />
     </div>
   );
