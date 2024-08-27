@@ -12,11 +12,12 @@ import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const PatientForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-
+  const { t } = useTranslation();
   // 1. Define your form.
   const form = useForm<z.infer<typeof userFormValidation>>({
     resolver: zodResolver(userFormValidation),
@@ -59,7 +60,7 @@ const PatientForm = () => {
         className="space-y-12 flex-1"
       >
         <section className="mb-12 space-y-4">
-          <h1 className="header">Hi there 👋🏻</h1>
+          <h1 className="header">{t("patientFormGreeting")}👋🏻</h1>
           <p>Schedule your appointment.</p>
         </section>
 
@@ -67,7 +68,7 @@ const PatientForm = () => {
         <CustomFormField
           formControl={form.control}
           formFieldType={FormFieldType.INPUT}
-          label={"Full name"}
+          label={t("patientFormFullName")}
           description={"Enter your full name"}
           placeholder={"John Doe"}
           iconSrc={"/assets/icons/user.svg"}
@@ -79,7 +80,7 @@ const PatientForm = () => {
         <CustomFormField
           formControl={form.control}
           formFieldType={FormFieldType.INPUT}
-          label={"Email"}
+          label={t("patientFormEmail")}
           description={"email"}
           placeholder={"example@example.com"}
           iconSrc={"/assets/icons/email.svg"}
@@ -91,14 +92,14 @@ const PatientForm = () => {
         <CustomFormField
           formControl={form.control}
           formFieldType={FormFieldType.PHONE_INPUT}
-          label={"Phone number"}
+          label={t("patientFormPhoneNumber")}
           description={"phone number"}
           placeholder={"(123) 456-7890"}
           name="phone"
         />
 
         <CustomFormSubmitButton isLoading={isLoading}>
-          Submit
+          {t("patientFormPhoneNumber")}
         </CustomFormSubmitButton>
       </form>
     </Form>

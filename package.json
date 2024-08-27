@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "i18nexus pull -k 8Wf-GLt4QKZ_Pvx5Sh9phA && next dev",
+    "build": "i18nexus pull -k 8Wf-GLt4QKZ_Pvx5Sh9phA && next build",
+    "start": "i18nexus pull -k 8Wf-GLt4QKZ_Pvx5Sh9phA && next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "clsx": "^2.1.1",
     "i18next": "^23.14.0",
     "i18next-resources-to-backend": "^1.2.1",
+    "i18nexus-cli": "^3.5.0",
     "lucide-react": "^0.428.0",
     "next": "14.2.5",
     "next-i18n-router": "^5.5.1",
@@ -33,12 +34,12 @@
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.5.4"
   }
 }
