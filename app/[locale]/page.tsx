@@ -4,7 +4,8 @@ import Link from "next/link";
 import initTranslations from "../i18n";
 import TranslationsProvider from "../../components/transtlationProvider";
 
-const i18nNameSpaces = ["common"];
+// This is server rendered
+const i18nNameSpaces = ["common", "patientForm"];
 export default async function Home({ params }: { params: { locale: string } }) {
   // Initialize translations with the given locale and namespace
   // NOTE: First namespace in the array is the default one used. If we access another one we use namespaceName:value
@@ -14,6 +15,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
   );
 
   return (
+    // We use the transaltion provided once per page so we can access the transaltion in the children
     <TranslationsProvider
       resources={resources}
       locale={params.locale}

@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 const PatientForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const { t } = useTranslation();
+  const { t } = useTranslation("patientForm");
   // 1. Define your form.
   const form = useForm<z.infer<typeof userFormValidation>>({
     resolver: zodResolver(userFormValidation),
@@ -61,7 +61,7 @@ const PatientForm = () => {
       >
         <section className="mb-12 space-y-4">
           <h1 className="header">{t("patientFormGreeting")}👋🏻</h1>
-          <p>Schedule your appointment.</p>
+          <p>{t("patientFormScheduleApointment")}</p>
         </section>
 
         {/* Name */}
@@ -69,8 +69,8 @@ const PatientForm = () => {
           formControl={form.control}
           formFieldType={FormFieldType.INPUT}
           label={t("patientFormFullName")}
-          description={"Enter your full name"}
-          placeholder={"John Doe"}
+          description={t("patientFormNameDescription")}
+          placeholder={t("patientFormNameExample")}
           iconSrc={"/assets/icons/user.svg"}
           iconAlt={"user icon"}
           name="name"
@@ -81,8 +81,8 @@ const PatientForm = () => {
           formControl={form.control}
           formFieldType={FormFieldType.INPUT}
           label={t("patientFormEmail")}
-          description={"email"}
-          placeholder={"example@example.com"}
+          description={t("patientFormEmailDescription")}
+          placeholder={t("patientFormEmailExample")}
           iconSrc={"/assets/icons/email.svg"}
           iconAlt={"email"}
           name="email"
