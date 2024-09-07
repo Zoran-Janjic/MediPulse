@@ -99,7 +99,7 @@ const PatientForm = () => {
         />
 
         <CustomFormSubmitButton isLoading={isLoading}>
-          {t("patientFormPhoneNumber")}
+          {t("submitButton")}
         </CustomFormSubmitButton>
       </form>
     </Form>

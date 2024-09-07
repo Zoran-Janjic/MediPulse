@@ -1,1 +1,1 @@
-{"adminTitle":"ผู้ดูแลระบบ","errorUserCreation":"ไม่สามารถสร้างผู้ใช้ได้","submitButton":"ส่ง"}
+{"adminTitle":"ผู้ดูแลระบบ","errorUserCreation":"ไม่สามารถสร้างผู้ใช้ได้","greetingUser":"สวัสดี, {{username}}","submitButton":"ส่ง"}

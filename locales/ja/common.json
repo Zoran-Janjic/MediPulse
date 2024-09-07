@@ -1,1 +1,1 @@
-{"adminTitle":"管理者","errorUserCreation":"ユーザーの作成に失敗しました","submitButton":"提出する"}
+{"adminTitle":"管理者","errorUserCreation":"ユーザーの作成に失敗しました","greetingUser":"こんにちは、 {{username}}","submitButton":"提出する"}

@@ -1,1 +1,1 @@
-{"adminTitle":"Admin","errorUserCreation":"Failed to create user","submitButton":"Submit"}
+{"adminTitle":"Admin","errorUserCreation":"Failed to create user","greetingUser":"Hello, {{username}}","submitButton":"Submit"}

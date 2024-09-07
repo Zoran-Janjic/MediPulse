@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import initTranslations from "../i18n";
 import TranslationsProvider from "../../components/transtlationProvider";
+import LanguageChanger from "@/components/languageChanger/LanguageChanger";
 
 // This is server rendered
 const i18nNameSpaces = ["common", "patientForm"];
@@ -42,6 +43,7 @@ export default async function Home({ params }: { params: { locale: string } }) {
               <Link href={"/?admin=true"} className="text-green-500">
                 {t("adminTitle")}
               </Link>
+              <LanguageChanger />
             </div>
           </div>
         </section>

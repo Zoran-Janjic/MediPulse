@@ -1,1 +1,1 @@
-{"adminTitle":"行政","errorUserCreation":"无法创建用户","submitButton":"提交"}
+{"adminTitle":"行政","errorUserCreation":"无法创建用户","greetingUser":"您好， {{username}}","submitButton":"提交"}

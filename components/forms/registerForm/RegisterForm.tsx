@@ -12,11 +12,13 @@ import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const RegisterForm = () => {
+  const username = "Zoran";
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-
+  const { t } = useTranslation("patientForm");
   // 1. Define your form.
   const form = useForm<z.infer<typeof userFormValidation>>({
     resolver: zodResolver(userFormValidation),
@@ -59,17 +61,16 @@ const RegisterForm = () => {
         className="space-y-12 flex-1"
       >
         <section className="mb-12 space-y-4">
-          <h1 className="header">Hi there 👋🏻</h1>
-          <p>Schedule your appointment.</p>
+          <h1 className="header">{t("patientFormGreeting")}👋🏻</h1>
+          <p>{t("greetingUser", { username })}</p>
         </section>
-
         {/* Name */}
         <CustomFormField
           formControl={form.control}
           formFieldType={FormFieldType.INPUT}
-          label={"Full name"}
-          description={"Enter your full name"}
-          placeholder={"John Doe"}
+          label={t("patientFormFullName")}
+          description={t("patientFormNameDescription")}
+          placeholder={t("patientFormNameExample")}
           iconSrc={"/assets/icons/user.svg"}
           iconAlt={"user icon"}
           name="name"
@@ -79,9 +80,9 @@ const RegisterForm = () => {
         <CustomFormField
           formControl={form.control}
           formFieldType={FormFieldType.INPUT}
-          label={"Email"}
-          description={"email"}
-          placeholder={"example@example.com"}
+          label={t("patientFormEmail")}
+          description={t("patientFormEmailDescription")}
+          placeholder={t("patientFormEmailExample")}
           iconSrc={"/assets/icons/email.svg"}
           iconAlt={"email"}
           name="email"
@@ -91,14 +92,14 @@ const RegisterForm = () => {
         <CustomFormField
           formControl={form.control}
           formFieldType={FormFieldType.PHONE_INPUT}
-          label={"Phone number"}
+          label={t("patientFormPhoneNumber")}
           description={"phone number"}
           placeholder={"(123) 456-7890"}
           name="phone"
         />
 
         <CustomFormSubmitButton isLoading={isLoading}>
-          Submit
+          {t("submitButton")}
         </CustomFormSubmitButton>
       </form>
     </Form>
